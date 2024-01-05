@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>
+            FrontEnd of the Billing App
+        </title>
+    <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <h1>Billing App</h1>
+            <div class="container-fluid">
+                <div class="container">
+                    <div class = "part 1">
+                        <fieldset>
+                            <legend>Personal Information</legend>
+                            Full Name: <input type ="text" id="name"><br/>
+
+                            Full Email: <input type ="text" id="email"><br/>
+                        </fieldset>
+            </div>
+
+            <div class ="part 2">
+                <fieldset>
+                    <legend>Your Order</legend>
+                Samosa (Rs. 10): <input type ="text" id="samosa"><br/>
+                Kachori (Rs. 12): <input type ="text" id="kachori"><br/>
+                VadaPav (Rs. 60): <input type ="text" id="vadapav"><br/>
+                Maggie (Rs. 60): <input type ="text" id="maggie"><br/>
+                </fieldset>
+            </div>
+       </div>
+
+       <div class="container">
+        <fieldset>
+            <legend>Your Bill</legend>
+            <h3>Your Name: <span id ="name2"></span></h1>
+            <h3>Email:<span id="email2"></span></h3>
+            <table border ="1">
+                <thead>
+                    <tr><th>Menu</th><th>Quantity</th><th>Amount</th><th>Total</th></tr>
+                </thead>
+                <tbody id="BillStatement"></tbody>
+                
+            </table>
+        </fieldset>
+        <h1>Total Amount: Rs. <span id="amount"></span></h1>
+       </div>
+    </div>
+    <script>
+        var name="",email="";
+        var samosa_price=10,kachori_price=12,vadapav_price=60,maggie_price=50;
+        var samosa_q=0,kachori_q=0,vadapav_q=0,maggie_q=0;
+        var samosa_price_show="",kachori_price_show="",vadapav_price_show="",maggie_price_show="";
+        document.getElementById("name").addEventListener("keyup",function(){
+            //alert("hi");
+            name = document.getElementById("name").value;
+            //The complete "document.getElementById("name")" can be replaced by this i.e., this.value
+            document.getElementById("name2").innerHTML=name;  
+            //console.log(name);
+
+        });
+        document.getElementById("email").addEventListener("keyup",function(){
+            email = document.getElementById("email").value;
+            document.getElementById("email2").innerHTML=email;
+        });
+        document.getElementById("samosa").addEventListener("keyup",function(){
+            if(this.value==""||this.value==0){
+           //document.getElementById("BillStatement").innerHTML="";
+                    //BECAUSE OF THE ".INNERhtml" MULTIPLE DATA WERE NOT SHOWING IN THE BILL TABLE TOGETHER THEREFORE REMOVING IT
+                    //BillStatement="";
+                    samosa_price_show="";
+                    samosa_q=0;
+                    showbill();
+            }else{
+                samosa_q = this.value;
+                samosa_price_show="<tr><td>Samosa</td><td>Rs. "+samosa_price+"</td><td>"+samosa_q+"</td><td>"+samosa_price+"x"+samosa_q+" = "+samosa_price+"x"+samosa_q+"</td></tr>";
+                showbill();
+            }
+        });
+
+        document.getElementById("kachori").addEventListener("keyup",function(){
+            if(this.value==""||this.value==0){
+               // document.getElementById("BillStatement").innerHTML="";
+               kachori_price_show="";
+               kachori_q=0;
+               showbill();
+            }else{
+                kachori_q = this.value;
+                kachori_price_show="<tr><td>kachori</td><td>Rs. "+kachori_price+"</td><td>"+kachori_q+"</td><td>"+kachori_price+"x"+kachori_q+" = "+kachori_price+"x"+kachori_q+"</td></tr>";
+                showbill();
+            }
+        });
+
+        document.getElementById("vadapav").addEventListener("keyup",function(){
+            if(this.value==""||this.value==0){
+                //document.getElementById("BillStatement").innerHTML="";
+                vadapav_price_show="";
+                vadapav_q=0;
+                showbill();
+            }else{
+                vadapav_q = this.value;
+                vadapav_price_show="<tr><td>vadapav</td><td>Rs. "+vadapav_price+"</td><td>"+vadapav_q+"</td><td>"+vadapav_price+"x"+vadapav_q+" = "+vadapav_price+"x"+vadapav_q+"</td></tr>";
+                showbill();
+            }
+        });
+
+        document.getElementById("maggie").addEventListener("keyup",function(){
+            if(this.value==""||this.value==0){
+                //document.getElementById("BillStatement").innerHTML="";
+                maggie_price_show="";
+                maggie_q=0;
+                showbill();
+            }else{
+                maggie_q = this.value;
+                maggie_price_show="<tr><td>maggie</td><td>Rs. "+maggie_price+"</td><td>"+maggie_q+"</td><td>"+maggie_price+"x"+maggie_q+" = "+maggie_price+"x"+maggie_q+"</td></tr>";
+                showbill();
+            }
+        });
+
+        function showbill(){
+            document.getElementById("BillStatement").innerHTML = samosa_price_show+kachori_price_show+vadapav_price_show+maggie_price_show;
+            document.getElementById("amount").innerHTML = samosa_price*samosa_q+kachori_price*kachori_q+vadapav_price*vadapav_q+maggie_price*maggie_q;
+        }
+    </script>
+    </body>
+</html>

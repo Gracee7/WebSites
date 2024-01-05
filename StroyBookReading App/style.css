@@ -1,0 +1,39 @@
+#h1{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    background-color: blanchedalmond;
+    text-align: center;
+}
+
+.h4{
+    position: relative;
+  animation: move-words 50s linear infinite;
+  margin: 0;
+}
+    @keyframes move-words {
+        0% {
+          left: 100%;
+        }
+        100% {
+          left: -100%;
+        }
+      }
+
+.h4-1{
+    background-color: burlywood;
+}
+
+.row {
+    display: flex;
+  }
+  
+  .column {
+    text-align: center;
+    flex: 50%;
+  }
+
+  .column img {
+    margin-top: 8px;
+    vertical-align: middle;
+  }

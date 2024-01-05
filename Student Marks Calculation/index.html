@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Student Result</h1>
+    <div class="container-fluid">
+        <div class = "part1">
+            <fieldset>
+                <legend>Personal Information</legend>
+                Full Name: <input type="text" id="name"><br/><br/>
+                Class:<input type="number" id="clas"><br/><br/>
+                Section: <input type="text" id="section"><br/><br/>
+                Roll No: <input type="number" id="roll"><br/><br/>
+            </fieldset>
+        </div>
+        <div class="part2">
+            <fieldset>
+                <legend>Marks Entry</legend>
+                English : <input type="number" id="eng"><br/><br/>
+                Maths : <input type="number" id="math"><br/><br/>
+                Science : <input type="number" id="sci"><br/><br/>
+                Computer : <input type="number" id="comp"><br/><br/>
+            </fieldset>
+        </div>
+    </div>
+    <div class="container">
+        <fieldset>
+            <legend>Marks-Sheet</legend>
+            <h3>Student Name: <span id="sname"></span></h3>
+            <h3>Roll No.: <span id="rollno"></span></h3>
+            <h3>Class:<span id="class2"></span></h3>
+            <h3>Section:<span id="section2"></span></h3>
+            <table border ="1">
+                <thead>
+                    <tr><th>Subject Name</th><th>Marks</th><th>Grade</th></tr>
+                </thead>
+                <tbody id="marksSheet"></tbody>
+            </table>
+        </fieldset>
+        <h1>Total Marks Percentage = <span id="percent"></span></h1>
+        <h1>Final Grade =  <span id = "grade"></span></h1>
+        <button>Submit</button>
+    </div>
+    <script>
+        var name="",clas="",section="",roll="",eng="",math="",sci="",comp="",grade="";
+        var eng_marks=0,math_marks=0,sci_marks=0,comp_marks=0,final_grade=0;
+        var eng_marks_show="",math_marks_show="",sci_marks_show="",comp_marks_show="";
+
+        document.getElementById("name").addEventListener("keyup",function(){
+            name = document.getElementById("name").value;
+            document.getElementById("sname").innerHTML=name;  
+        });
+        document.getElementById("clas").addEventListener("keyup",function(){
+            cls = document.getElementById("clas").value;
+            document.getElementById("class2").innerHTML=cls;  
+        });
+        document.getElementById("roll").addEventListener("keyup",function(){
+            roll = document.getElementById("roll").value;
+            document.getElementById("rollno").innerHTML=roll;  
+        });
+        document.getElementById("section").addEventListener("keyup",function(){
+            section = document.getElementById("section").value;
+            document.getElementById("section2").innerHTML=section;  
+        });
+        
+        document.getElementById("eng").addEventListener("keyup",function(){
+            if(this.value==""||this.value==0){
+                 eng_marks=0;
+                 showresult();
+            }else{
+                eng_marks = this.value;
+                if(eng_marks>90){
+                    grade='A';
+                }
+                else if(eng_marks<=90 & eng_marks>80){
+                    grade='B';
+                }
+                else if(eng_marks<=80 & eng_marks>70){
+                    grade='C';
+                }
+                else if(eng_marks<=70 & eng_marks>60){
+                    grade='D';
+                }
+                else{
+                    grade='F';
+                }
+                eng_marks_show="<tr><td>English</td><td> "+eng_marks+"</td><td>"+grade+"</td></tr>";
+                showresult();
+            }
+        });
+        document.getElementById("math").addEventListener("keyup",function(){
+            if(this.value==""||this.value==0){
+                 math_marks=0;
+                 showresult();
+            }else{
+                math_marks = this.value;
+                if(math_marks>90){
+                    grade='A';
+                }
+                else if(math_marks<=90 & math_marks>80){
+                    grade='B';
+                }
+                else if(math_marks<=80 & math_marks>70){
+                    grade='C';
+                }
+                else if(math_marks<=70 & math_marks>60){
+                    grade='D';
+                }
+                else{
+                    grade='F';
+                }
+                math_marks_show="<tr><td>Maths</td><td> "+math_marks+"</td><td>"+grade+"</td></tr>";
+                showresult();
+            }
+        });
+        document.getElementById("sci").addEventListener("keyup",function(){
+            if(this.value==""||this.value==0){
+                 sci_marks=0;
+                 showresult();
+            }else{
+                sci_marks = this.value;
+                if(sci_marks>90){
+                    grade='A';
+                }
+                else if(sci_marks<=90 & sci_marks>80){
+                    grade='B';
+                }
+                else if(sci_marks<=80 & sci_marks>70){
+                    grade='C';
+                }
+                else if(sci_marks<=70 & sci_marks>60){
+                    grade='D';
+                }
+                else{
+                    grade='F';
+                }
+                sci_marks_show="<tr><td>Science</td><td>"+sci_marks+"</td><td>"+grade+"</td></tr>";
+                showresult();
+            }
+        });
+        document.getElementById("comp").addEventListener("keyup",function(){
+            if(this.value==""||this.value==0){
+                 comp_marks=0;
+                 showresult();
+            }else{
+                comp_marks = this.value;
+                if(comp_marks>90){
+                    grade='A';
+                }
+                else if(comp_marks<=90 & comp_marks>80){
+                    grade='B';
+                }
+                else if(comp_marks<=80 & comp_marks>70){
+                    grade='C';
+                }
+                else if(comp_marks<=70 & comp_marks>60){
+                    grade='D';
+                }
+                else{
+                    grade='F';
+                }
+                comp_marks_show="<tr><td>Computer</td><td> "+comp_marks+"</td><td>"+grade+"</td></tr>";
+                showresult();
+            }
+        });
+
+        function showresult(){
+            document.getElementById("marksSheet").innerHTML = eng_marks_show+math_marks_show+sci_marks_show+comp_marks_show;
+            document.getElementById("percent").innerHTML = ((eng_marks*1+math_marks*1+sci_marks*1+comp_marks*1)/400)*100;
+            if(document.getElementById("percent").innerHTML>=90){
+                document.getElementById("grade").innerHTML='A+';
+            }
+            else if(document.getElementById("percent").innerHTML>=80 & document.getElementById("percent").innerHTML<90){
+                document.getElementById("grade").innerHTML='A';
+            }
+            else if(document.getElementById("percent").innerHTML>=70 & document.getElementById("percent").innerHTML<80){
+                document.getElementById("grade").innerHTML='B+';
+            }
+            else if(document.getElementById("percent").innerHTML>=60 & document.getElementById("percent").innerHTML<70){
+                document.getElementById("grade").innerHTML='B';
+            }
+            else if(document.getElementById("percent").innerHTML>=50 & document.getElementById("percent").innerHTML<60){
+                document.getElementById("grade").innerHTML='C+';
+            }
+            else if(document.getElementById("percent").innerHTML>=40 & document.getElementById("percent").innerHTML<50){
+                document.getElementById("grade").innerHTML='C';
+            }
+            else if(document.getElementById("percent").innerHTML>=30 & document.getElementById("percent").innerHTML<40){
+                document.getElementById("grade").innerHTML='D';
+            }
+            else{
+                document.getElementById("grade").innerHTML='F';
+            }
+           
+        }
+    </script>
+</body>
+</html>
